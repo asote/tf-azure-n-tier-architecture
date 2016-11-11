@@ -5,12 +5,12 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "count" {
-  default = 2
+  default = 1
 }
 
 resource "azurerm_virtual_machine" "vmtest" {
   count = "${var.count}"
-  name  = "abctestvn"
+  name  = "web-0${count.index + 1}"
 
   #tag the instance with a counter starting at 1, ie. web-001
   #Name                  = ["${format("web-%03d", count.index + 1)}"]

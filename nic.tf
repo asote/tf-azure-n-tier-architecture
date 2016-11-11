@@ -1,5 +1,5 @@
 resource "azurerm_network_interface" "nics" {
-  name                = "publicnic"
+  name                = "vmnic-${count.index +1}"
   location            = "centralus"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
