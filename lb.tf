@@ -31,7 +31,7 @@ resource "azurerm_lb_nat_rule" "RDP" {
   protocol                       = "Tcp"
   frontend_port                  = 3389
   backend_port                   = 3389
-  frontend_ip_configuration_name = "${azurerm_lb.LB.frontend_ip_configuration.name}"
+  frontend_ip_configuration_name = "PublicIPAddress"
 }
 
 resource "azurerm_lb_nat_pool" "http" {
@@ -43,7 +43,7 @@ resource "azurerm_lb_nat_pool" "http" {
   frontend_port_start            = 80
   frontend_port_end              = 81
   backend_port                   = 80
-  frontend_ip_configuration_name = "${azurerm_lb.LB.frontend_ip_configuration.name}"
+  frontend_ip_configuration_name = "PublicIPAddress"
 }
 
 resource "azurerm_lb_probe" "tcp" {
