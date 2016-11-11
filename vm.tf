@@ -32,19 +32,19 @@ resource "azurerm_virtual_machine" "vmtest" {
 
   storage_os_disk {
     name          = "osdisk${count.index}"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/osdisk${count.index}.vhd"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/osdisk}${count.index}.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
   storage_data_disk {
     name          = "datadisk${count.index}"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk${count.index}.vhd"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk}${count.index}.vhd"
     disk_size_gb  = "250"
     create_option = "empty"
     lun           = 0
   }
   os_profile {
-    computer_name  = "asotvm01"
+    computer_name  = "webvm-${count.index + 1}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
   }
