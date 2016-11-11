@@ -4,10 +4,18 @@ variable "admin_username" {}
 
 variable "admin_password" {}
 
+variable "count" {
+  default = 2
+}
+
 resource "azurerm_virtual_machine" "vmtest" {
-  count                 = "2"
-  name                  = "as-web*"
-  location              = "centralus"
+  count = "${var.count}"
+  name  = "abctestvn"
+
+  #tag the instance with a counter starting at 1, ie. web-001
+  #Name                  = ["${format("web-%03d", count.index + 1)}"]
+  location = "centralus"
+
   resource_group_name   = "${azurerm_resource_group.ResourceGrps.name}"
   network_interface_ids = ["${azurerm_network_interface.nics.id}"]
   availability_set_id   = "${azurerm_availability_set.AvailabilitySets.id}"

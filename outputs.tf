@@ -9,14 +9,15 @@ output "storage_account" {
 output "vm_name" {
   value = ["${azurerm_virtual_machine.vmtest.*.name}"]
 }
+
 output "private_ip" {
   value = ["${azurerm_network_interface.nics.*.private_ip_address}"]
 }
 
 output "vm_id" {
   value = ["${azurerm_network_interface.nics.virtual_machine_id}"]
-  }
+}
+
 output "dns_servers" {
   value = ["${azurerm_network_interface.nics.applied_dns_servers}"]
 }
-

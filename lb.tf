@@ -46,11 +46,11 @@ resource "azurerm_lb_nat_pool" "http" {
   frontend_ip_configuration_name = "${azurerm_lb.LB.frontend_ip_configuration.name}"
 }
 
-resource "azurerm_lb_probe" "http" {
+resource "azurerm_lb_probe" "tcp" {
   location            = "centralus"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
   loadbalancer_id     = "${azurerm_lb.LB.id}"
-  name                = "HTTP Running Probe"
-  protocol            = "http"
+  name                = "tcp_probe"
+  protocol            = "tcp"
   port                = 80
 }
