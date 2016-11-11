@@ -9,3 +9,7 @@ output "storage_account" {
 output "virtualnet" {
   value = "${azurerm_virtual_network.vnet1.name}"
 }
+
+output "VM_Name" {
+  value = ["${azurerm_virtual_machine.vmtest.*.name}"]
+}

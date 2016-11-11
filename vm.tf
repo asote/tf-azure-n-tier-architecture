@@ -9,7 +9,7 @@ resource "azurerm_virtual_machine" "vmtest" {
   name                  = "asotvm01"
   location              = "centralus"
   resource_group_name   = "${azurerm_resource_group.ResourceGrps.name}"
-  network_interface_ids = ["${azurerm_network_interface.nicID.id}"]
+  network_interface_ids = ["${azurerm_network_interface.nics.id}"]
   availability_set_id   = "${azurerm_availability_set.AvailabilitySets.id}"
   vm_size               = "Standard_A2"
 
@@ -44,48 +44,4 @@ resource "azurerm_virtual_machine" "vmtest" {
     enable_automatic_upgrades = "false"
     provision_vm_agent        = "false"
   }
-}
-
-# Define security object and create inbound and outbound rulesets
-
-resource "azurerm_network_security_group" "sgtest" {
-  name                = "asotSecurityGroup1"
-  location            = "centralus"
-  resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
-}
-
-resource "azurerm_network_security_rule" "srtest" {
-  name                        = "asotRule1"
-  priority                    = 100
-  direction                   = "Outbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "3389"
-  destination_port_range      = "3389"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = "${azurerm_resource_group.ResourceGrps.name}"
-  network_security_group_name = "${azurerm_network_security_group.sgtest.name}"
-}
-
-resource "azurerm_network_security_rule" "inbound" {
-  name                        = "inbound"
-  priority                    = 100
-  direction                   = "Inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "3389"
-  destination_port_range      = "3389"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = "${azurerm_resource_group.ResourceGrps.name}"
-  network_security_group_name = "${azurerm_network_security_group.sgtest.name}"
-}
-
-output "VM_Name" {
-  value = "${azurerm_virtual_machine.vmtest.name}"
-}
-
-output "public_ip" {
-  value = "${azurerm_public_ip.publicIP.public_ip}"
 }
