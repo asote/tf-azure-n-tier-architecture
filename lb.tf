@@ -51,5 +51,6 @@ resource "azurerm_lb_probe" "http" {
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
   loadbalancer_id     = "${azurerm_lb.LB.id}"
   name                = "HTTP Running Probe"
+  protocol            = "http"
   port                = 80
 }
