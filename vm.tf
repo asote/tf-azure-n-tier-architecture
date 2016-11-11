@@ -6,7 +6,7 @@ variable "admin_password" {}
 
 resource "azurerm_virtual_machine" "vmtest" {
   count                 = "2"
-  name                  = "asotvm01"
+  name                  = "as-web*"
   location              = "centralus"
   resource_group_name   = "${azurerm_resource_group.ResourceGrps.name}"
   network_interface_ids = ["${azurerm_network_interface.nics.id}"]
