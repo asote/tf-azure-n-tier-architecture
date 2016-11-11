@@ -31,14 +31,14 @@ resource "azurerm_virtual_machine" "vmtest" {
   # Assign vhd blob storage and create a profile
 
   storage_os_disk {
-    name          = "osdisk0"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/osdisk0.vhd"
+    name          = "osdisk${count.index}"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/osdisk${count.index}.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
   storage_data_disk {
-    name          = "datadisk0"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk0.vhd"
+    name          = "datadisk${count.index}"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk${count.index}.vhd"
     disk_size_gb  = "250"
     create_option = "empty"
     lun           = 0
