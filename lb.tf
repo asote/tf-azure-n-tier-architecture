@@ -22,4 +22,3 @@ resource "azurerm_lb_backend_address_pool" "web" {
   loadbalancer_id     = "${azurerm_lb.LB.id}"
   name                = "BackEndAddressPool"
 }
-
