@@ -1,6 +1,6 @@
 # Create a virtual network
 resource "azurerm_virtual_network" "vnet1" {
-  name                = "web-vnet"
+  name                = "vnet1"
   address_space       = ["10.0.0.0/16"]
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
