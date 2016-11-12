@@ -2,7 +2,7 @@ resource "azurerm_storage_account" "stacc2" {
   name                = "asoteloterra2"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
-  location     = "centralus"
+  location     = "${azurerm_resource_group.ResourceGrps.location}"
   account_type = "Standard_GRS"
 
   tags {

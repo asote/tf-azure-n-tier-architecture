@@ -17,6 +17,8 @@ resource "azurerm_virtual_machine" "vmtest" {
   resource_group_name   = "${azurerm_resource_group.ResourceGrps.name}"
   network_interface_ids = ["${element(azurerm_network_interface.nics.*.id, count.index)}"]
   availability_set_id   = "${azurerm_availability_set.AvailabilitySets.id}"
+  delete_os_disk_on_termination = "true"
+  delete_data_disks_on_termination  = "true"
   vm_size               = "Standard_A2"
 
   storage_image_reference {
