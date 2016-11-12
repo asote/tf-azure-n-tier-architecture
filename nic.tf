@@ -4,7 +4,7 @@ resource "azurerm_network_interface" "nics" {
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
   ip_configuration {
-    name                          = "lbconfiguration1"
+    name                          = "lbconfiguration${count.index +1}"
     subnet_id                     = "${azurerm_subnet.subnet1.id}"
     private_ip_address_allocation = "dynamic"
 

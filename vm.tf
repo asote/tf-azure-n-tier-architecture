@@ -12,8 +12,6 @@ resource "azurerm_virtual_machine" "vmtest" {
   count = "${var.count}"
   name  = "web-0${count.index + 1}"
 
-  #tag the instance with a counter starting at 1, ie. web-001
-  #Name                  = ["${format("web-%03d", count.index + 1)}"]
   location = "centralus"
 
   resource_group_name   = "${azurerm_resource_group.ResourceGrps.name}"
@@ -32,13 +30,13 @@ resource "azurerm_virtual_machine" "vmtest" {
 
   storage_os_disk {
     name          = "osdisk${count.index}"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/osdisk}${count.index}.vhd"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/osdisk${count.index}.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
   storage_data_disk {
     name          = "datadisk${count.index}"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk}${count.index}.vhd"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk${count.index}.vhd"
     disk_size_gb  = "250"
     create_option = "empty"
     lun           = 0
