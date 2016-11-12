@@ -40,7 +40,7 @@ resource "azurerm_lb_rule" "Rule1" {
   loadbalancer_id                = "${azurerm_lb.LB.id}"
   name                           = "LBRule"
   protocol                       = "Tcp"
-  frontend_port                  = 3389
+  frontend_port                  = 54389
   backend_port                   = 3389
   frontend_ip_configuration_name = "PublicIPAddress"
 }
