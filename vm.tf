@@ -5,7 +5,7 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "count" {
-  default = 1
+  default = 2
 }
 
 resource "azurerm_virtual_machine" "vmtest" {
