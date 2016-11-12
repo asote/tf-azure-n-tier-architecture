@@ -3,6 +3,7 @@ resource "azurerm_network_interface" "nics" {
   name                = "vmnic-web-0${count.index + 1}"
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
+  network_security_group_id = "${azurerm_network_security_group.web_fw.id}"
 
   ip_configuration {
     name                                    = "ipconfig${count.index +1}"
