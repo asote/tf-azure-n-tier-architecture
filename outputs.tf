@@ -10,7 +10,11 @@ output "vm_name" {
   value = ["${azurerm_virtual_machine.vmtest.*.name}"]
 }
 
-output "private_ip" {
+output "bastion_name" {
+  value = ["${azurerm_virtual_machine.jumphost.*.name}"]
+}
+
+output "webservers_ip" {
   value = ["${azurerm_network_interface.nics.*.private_ip_address}"]
 }
 
@@ -22,6 +26,6 @@ output "dns_servers" {
   value = ["${azurerm_network_interface.nics.applied_dns_servers}"]
 }
 
-output "public_ip" {
+output "LB VIP" {
   value = ["${azurerm_public_ip.lbIP.ip_address}"]
 }
