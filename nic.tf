@@ -1,3 +1,4 @@
+
 resource "azurerm_network_interface" "nics" {
   name                = "vmnic-${count.index +1}"
   location            = "centralus"

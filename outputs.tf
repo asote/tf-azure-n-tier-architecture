@@ -15,7 +15,7 @@ output "private_ip" {
 }
 
 output "vm_id" {
-  value = ["${azurerm_network_interface.nics.virtual_machine_id}"]
+  value = ["${azurerm_network_interface.nics.*.virtual_machine_id}"]
 }
 
 output "dns_servers" {

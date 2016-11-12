@@ -15,7 +15,7 @@ resource "azurerm_virtual_machine" "vmtest" {
   location = "centralus"
 
   resource_group_name   = "${azurerm_resource_group.ResourceGrps.name}"
-  network_interface_ids = ["${azurerm_network_interface.nics.id}"]
+  network_interface_ids = ["${azurerm_network_interface.nics.*.id}"]
   availability_set_id   = "${azurerm_availability_set.AvailabilitySets.id}"
   vm_size               = "Standard_A2"
 
