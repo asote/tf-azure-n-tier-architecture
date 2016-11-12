@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "stacc2" {
-  name                = "webserverstorage"
+  name                = "asotwebserverstor"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
   location     = "${azurerm_resource_group.ResourceGrps.location}"
