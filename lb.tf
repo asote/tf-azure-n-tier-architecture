@@ -28,20 +28,22 @@ resource "azurerm_lb_backend_address_pool" "web" {
 
 # Load Balancer Rule
 resource "azurerm_lb_rule" "LBRule" {
-  location = "${azurerm_resource_group.ResourceGrps.location}"
-  resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
-  loadbalancer_id = "${azurerm_lb.LB.id}"
-  name = "HTTPRule"
-  protocol = "Tcp"
-  frontend_port = 80
-  backend_port = 80
+  location                       = "${azurerm_resource_group.ResourceGrps.location}"
+  resource_group_name            = "${azurerm_resource_group.ResourceGrps.name}"
+  loadbalancer_id                = "${azurerm_lb.LB.id}"
+  name                           = "HTTPRule"
+  protocol                       = "Tcp"
+  frontend_port                  = 80
+  backend_port                   = 80
   frontend_ip_configuration_name = "PublicIPAddress"
+  backend_address_pool_id        = "${azurerm_lb_backend_address_pool.web.id}"
+  probe_id                       = "${azurerm_lb_probe.LBProbeid}"
 }
 
 resource "azurerm_lb_probe" "LBProbe" {
-  location = "${azurerm_resource_group.ResourceGrps.location}"
+  location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
-  loadbalancer_id = "${azurerm_lb.LB.id}"
-  name = "HTTP_Running_Probe"
-  port = 80
+  loadbalancer_id     = "${azurerm_lb.LB.id}"
+  name                = "HTTP_Running_Probe"
+  port                = 80
 }
