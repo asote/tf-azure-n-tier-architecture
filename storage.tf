@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "stacc2" {
-  name                = "asotelostacc2"
+  name                = "asoteloterra2"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
   location     = "centralus"
