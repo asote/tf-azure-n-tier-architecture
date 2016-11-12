@@ -1,6 +1,6 @@
 resource "azurerm_network_interface" "nics" {
   count               = "${var.count}"
-  name                = "vmnic-${count.index +1}"
+  name                = "vmnic-web-0${count.index + 1}"
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "nics" {
 }
 
 resource "azurerm_network_security_group" "web_fw" {
-  name                = "nsg_win"
+  name                = "nsg_web"
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
