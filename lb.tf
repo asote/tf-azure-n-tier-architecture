@@ -33,3 +33,22 @@ resource "azurerm_lb_nat_rule" "Rules" {
   backend_port                   = 3389
   frontend_ip_configuration_name = "PublicIPAddress"
 }
+
+resource "azurerm_lb_rule" "Rule1" {
+  location                       = "${azurerm_resource_group.ResourceGrps.location}"
+  resource_group_name            = "${azurerm_resource_group.ResourceGrps.name}"
+  loadbalancer_id                = "${azurerm_lb.LB.id}"
+  name                           = "LBRule"
+  protocol                       = "Tcp"
+  frontend_port                  = 3389
+  backend_port                   = 3389
+  frontend_ip_configuration_name = "PublicIPAddress"
+}
+
+resource "azurerm_lb_probe" "Probe1" {
+  location            = "${azurerm_resource_group.ResourceGrps.location}"
+  resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
+  loadbalancer_id     = "${azurerm_lb.LB.id}"
+  name                = "rdp_running_probe"
+  port                = 3389
+}
