@@ -21,3 +21,7 @@ output "vm_id" {
 output "dns_servers" {
   value = ["${azurerm_network_interface.nics.applied_dns_servers}"]
 }
+
+output "public_ip" {
+  value = ["${azurerm_public_ip.lbIP.ip_address}"]
+}
