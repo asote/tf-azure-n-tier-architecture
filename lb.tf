@@ -29,7 +29,7 @@ resource "azurerm_lb_backend_address_pool" "web" {
 # NAT Rules
 resource "azurerm_lb_nat_pool" "RDP" {
   location                       = "${azurerm_resource_group.ResourceGrps.location}"
-  resource_group_name            = "${azurerm_resource_group.test.name}"
+  resource_group_name            = "${azurerm_resource_group.ResourceGrps.name}"
   loadbalancer_id                = "${azurerm_lb.LB.id}"
   name                           = "RDPApplication Pool"
   protocol                       = "Tcp"
