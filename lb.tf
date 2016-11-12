@@ -38,12 +38,13 @@ resource "azurerm_lb_rule" "LBRule" {
   frontend_ip_configuration_name = "PublicIPAddress"
   backend_address_pool_id        = "${azurerm_lb_backend_address_pool.web.id}"
   probe_id                       = "${azurerm_lb_probe.LBProbe.id}"
+  depends_on                     = ["azurerm_lb_probe.LBProbe"]
 }
 
 resource "azurerm_lb_probe" "LBProbe" {
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
   loadbalancer_id     = "${azurerm_lb.LB.id}"
-  name                = "HTTP_Running_Probe"
+  name                = "HTTP"
   port                = 80
 }
