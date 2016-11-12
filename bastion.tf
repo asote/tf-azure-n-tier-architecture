@@ -43,9 +43,10 @@ resource "azurerm_virtual_machine" "jumphost" {
 }
 
 resource "azurerm_network_interface" "bastionnics" {
-  name                = "vmnic-bastion-01"
-  location            = "${azurerm_resource_group.ResourceGrps.location}"
-  resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
+  name                      = "vmnic-bastion-01"
+  location                  = "${azurerm_resource_group.ResourceGrps.location}"
+  resource_group_name       = "${azurerm_resource_group.ResourceGrps.name}"
+  network_security_group_id = "${azurerm_network_security_group.bastion_fw.id}"
 
   ip_configuration {
     name                          = "ipconfig1"
