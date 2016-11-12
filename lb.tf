@@ -27,9 +27,9 @@ resource "azurerm_lb_nat_rule" "Rules" {
   location                       = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name            = "${azurerm_resource_group.ResourceGrps.name}"
   loadbalancer_id                = "${azurerm_lb.LB.id}"
-  name                           = "http_access"
+  name                           = "rdp_access"
   protocol                       = "tcp"
-  frontend_port                  = 80
-  backend_port                   = 80
+  frontend_port                  = 3389
+  backend_port                   = 3389
   frontend_ip_configuration_name = "PublicIPAddress"
 }
