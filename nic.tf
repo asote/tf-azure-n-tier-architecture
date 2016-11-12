@@ -11,3 +11,21 @@ resource "azurerm_network_interface" "nics" {
     load_balancer_backend_address_pools_ids = ["${azurerm_lb_backend_address_pool.web.id}"]
   }
 }
+
+resource "azurerm_network_security_group" "web_fw" {
+  name                = "nsg_win"
+  location            = "${azurerm_resource_group.ResourceGrps.location}"
+  resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
+
+  security_rule {
+    name                       = "allow-rdp"
+    priority                   = 1000
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
