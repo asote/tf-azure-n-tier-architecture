@@ -28,7 +28,7 @@ resource "azurerm_virtual_machine" "jumphost" {
     name          = "datadisk0"
     vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastiondatadisk0.vhd"
     disk_size_gb  = "50"
-    create_option = "empty"
+    create_option = "Empty"
     lun           = 0
   }
   os_profile {

@@ -40,7 +40,7 @@ resource "azurerm_virtual_machine" "vmtest" {
     name          = "datadisk${count.index}"
     vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/datadisk${count.index}.vhd"
     disk_size_gb  = "250"
-    create_option = "empty"
+    create_option = "Empty"
     lun           = 0
   }
   os_profile {
