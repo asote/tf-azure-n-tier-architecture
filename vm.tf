@@ -51,5 +51,9 @@ resource "azurerm_virtual_machine" "vmtest" {
   os_profile_windows_config {
     enable_automatic_upgrades = "false"
     provision_vm_agent        = "false"
+
+    winrm {
+      protocol = "http"
+    }
   }
 }
