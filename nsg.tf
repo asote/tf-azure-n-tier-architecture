@@ -22,7 +22,7 @@ resource "azurerm_network_security_group" "web_fw" {
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
   security_rule {
-    name                       = "allow-rdp"
+    name                       = "allow-http"
     priority                   = 1000
     direction                  = "Inbound"
     access                     = "Allow"

@@ -52,4 +52,13 @@ resource "azurerm_virtual_machine" "vmtest" {
     enable_automatic_upgrades = "false"
     provision_vm_agent        = "false"
   }
+  provisioner "file" {
+    source      = "Install-IIS.ps1"
+    destination = "c:/Install-IIS.ps1"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "powershell -file 'c:/Install-IIS.ps1'",
+    ]
+  }
 }
