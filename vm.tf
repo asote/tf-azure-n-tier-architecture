@@ -58,7 +58,7 @@ resource "azurerm_virtual_machine" "vmtest" {
   }
   provisioner "remote-exec" {
     inline = [
-      "powershell -file 'c:/Install-IIS.ps1'",
+      "powershell -file "c:/Install-IIS.ps1"",
     ]
   }
 }

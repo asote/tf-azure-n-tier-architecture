@@ -1,13 +1,11 @@
 # Install IIS
-import-module ServerManager
-Add-WindowsFeature Web-Server,web-management-console
+get-WindowsFeature -name Web-Server | Install-WindowsFeature -IncludeManagementTools
 
 # Initialize Partition and Format New Disk
-Get-Disk | Where {$_.partitionstyle -eq 'raw'} | `
-Initialize-Disk -PartitionStyle MBR -PassThru | `
-New-Partition -AssignDriveLetter -UseMaximumSize | `
-Format-Volume -FileSystem NTFS -NewFileSystemLabel "data" -Confirm:$false
+Get-Disk -Number 2 | Initialize-Disk -PartitionStyle MBR -PassThru | New-Partition -AssignDriveLetter F -UseMaximumSize
+Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel data -Confirm:$false
+
 
 # Create default.html
-New-Item -ItemType "file" -Path "C:\inetpub\wwwroot\default.html"
+New-Item -ItemType "file" -Path "C:\inetpub\wwwroot\default.htm"
 Add-Content C:\inetpub\wwwroot\default.html $env:COMPUTERNAME
