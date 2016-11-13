@@ -52,27 +52,4 @@ resource "azurerm_virtual_machine" "vmtest" {
     enable_automatic_upgrades = "false"
     provision_vm_agent        = "false"
   }
-  provisioner "file" {
-    source      = "Install-IIS.ps1"
-    destination = "c:\\Install-IIS.ps1"
-
-    connection {
-      type     = "winrm"
-      user     = "${var.admin_username}"
-      password = "${var.admin_password}"
-      timeout  = "30m"
-    }
-  }
-  provisioner "remote-exec" {
-    inline = [
-      "powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\\Install-IIS.ps1",
-    ]
-
-    connection {
-      type     = "winrm"
-      user     = "${var.admin_username}"
-      password = "${var.admin_password}"
-      timeout  = "30m"
-    }
-  }
 }
