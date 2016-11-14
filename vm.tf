@@ -47,6 +47,17 @@ resource "azurerm_virtual_machine" "vmtest" {
     computer_name  = "webvm-${count.index + 1}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
+
+    custom_data = <<EOF
+<script>
+  winrm quickconfig -q & winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"} & winrm set winrm/config @{MaxTimeoutms="1800000"} & winrm set winrm/config/service @{AllowUnencrypted="true"} & winrm set winrm/config/service/auth @{Basic="true"}
+</script>
+<powershell>
+  netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
+  $admin = [adsi]("WinNT://./administrator, user")
+  $admin.psbase.invoke("SetPassword", "${var.admin_password}")
+</powershell>
+EOF
   }
   os_profile_windows_config {
     enable_automatic_upgrades = "false"
@@ -54,6 +65,29 @@ resource "azurerm_virtual_machine" "vmtest" {
 
     winrm {
       protocol = "http"
+    }
+  }
+  provisioner "file" {
+    source      = "Install-IIS.ps1"
+    destination = "c:\\Install-IIS.ps1"
+
+    connection {
+      type     = "winrm"
+      user     = "${var.admin_username}"
+      password = "${var.admin_password}"
+      timeout  = "15m"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\\Install-IIS.ps1",
+    ]
+
+    connection {
+      type     = "winrm"
+      user     = "${var.admin_username}"
+      password = "${var.admin_password}"
+      timeout  = "15m"
     }
   }
 }
