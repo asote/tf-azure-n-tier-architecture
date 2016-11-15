@@ -1,14 +1,14 @@
 # Create virtal machine and define image to install on VM 
 
-resource "azurerm_virtual_machine" "tier1-vm" {
+resource "azurerm_virtual_machine" "tier2-vm" {
   count = "${var.count}"
-  name  = "web-0${count.index + 1}"
+  name  = "sql-0${count.index + 1}"
 
   location = "${azurerm_resource_group.ResourceGrps.location}"
 
   resource_group_name              = "${azurerm_resource_group.ResourceGrps.name}"
-  network_interface_ids            = ["${element(azurerm_network_interface.tier1-nics.*.id, count.index)}"]
-  availability_set_id              = "${azurerm_availability_set.tier1-AvailabilitySet.id}"
+  network_interface_ids            = ["${element(azurerm_network_interface.tier2-nics.*.id, count.index)}"]
+  availability_set_id              = "${azurerm_availability_set.tier2-AvailabilitySet.id}"
   delete_os_disk_on_termination    = "true"
   delete_data_disks_on_termination = "true"
   vm_size                          = "Standard_A2"
@@ -24,19 +24,19 @@ resource "azurerm_virtual_machine" "tier1-vm" {
 
   storage_os_disk {
     name          = "osdisk${count.index}"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/tier1-osdisk${count.index}.vhd"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/tier2-osdisk${count.index}.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
   storage_data_disk {
     name          = "datadisk${count.index}"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/tier1-datadisk${count.index}.vhd"
+    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/tier2-datadisk${count.index}.vhd"
     disk_size_gb  = "250"
     create_option = "Empty"
     lun           = 0
   }
   os_profile {
-    computer_name  = "webvm-${count.index + 1}"
+    computer_name  = "sqlvm-${count.index + 1}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
 
@@ -84,11 +84,11 @@ resource "azurerm_virtual_machine" "tier1-vm" {
 #  }
 }
 
-resource "azurerm_virtual_machine_extension" "tier1-vmext" {
+resource "azurerm_virtual_machine_extension" "tier2-vmext" {
   name                 = "hostname"
   location             = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
-  virtual_machine_name = "${element(azurerm_virtual_machine.tier1-vm.*.name, count.index)}"
+  virtual_machine_name = "${element(azurerm_virtual_machine.tier2-vm.*.name, count.index)}"
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
   type_handler_version = "1.8"
