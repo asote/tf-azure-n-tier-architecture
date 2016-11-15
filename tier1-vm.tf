@@ -113,21 +113,52 @@ resource "azurerm_virtual_machine" "tier1-vm" {
 }
 
 #resource "azurerm_virtual_machine_extension" "tier1-vmext" {
+
+
 #  name                 = "hostname"
+
+
 #  location             = "${azurerm_resource_group.ResourceGrps.location}"
+
+
 #  resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
+
+
 #  virtual_machine_name = "${element(azurerm_virtual_machine.tier1-vm.*.name, count.index)}"
+
+
 #  publisher            = "Microsoft.Compute"
+
+
 #  type                 = "CustomScriptExtension"
+
+
 #  type_handler_version = "1.8"
 
+
 #  settings = <<SETTINGS
+
+
 #    {
+
+
 #        "commandToExecute": "hostname"
+
+
 #    }
+
+
 #SETTINGS
 
+
 #  tags {
+
+
 #    environment = "test"
+
+
 #  }
+
+
 #}
+

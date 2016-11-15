@@ -22,6 +22,10 @@ output "sqlservers_ip" {
   value = ["${azurerm_network_interface.tier2-nics.*.private_ip_address}"]
 }
 
-output "LB VIP" {
+output "LB_VIP_IP" {
   value = ["${azurerm_public_ip.lbIP.ip_address}"]
+}
+
+output "LB_VIP_DNS" {
+  value = ["${azurerm_public_ip.lbIP.fqdn}"]
 }
