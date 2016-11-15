@@ -5,6 +5,7 @@ output "webservers_name" {
 output "sqlservers_name" {
   value = ["${azurerm_virtual_machine.tier2-vm.*.name}"]
 }
+
 output "bastion_name" {
   value = ["${azurerm_virtual_machine.jumphost.*.name}"]
 }
@@ -16,6 +17,7 @@ output "bastion_ip" {
 output "webservers_ip" {
   value = ["${azurerm_network_interface.tier1-nics.*.private_ip_address}"]
 }
+
 output "sqlservers_ip" {
   value = ["${azurerm_network_interface.tier2-nics.*.private_ip_address}"]
 }
