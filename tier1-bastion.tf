@@ -20,13 +20,13 @@ resource "azurerm_virtual_machine" "jumphost" {
 
   storage_os_disk {
     name          = "osdisk0"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastionosdisk0.vhd"
+    vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastionosdisk0.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
   storage_data_disk {
     name          = "datadisk0"
-    vhd_uri       = "${azurerm_storage_account.stacc2.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastiondatadisk0.vhd"
+    vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastiondatadisk0.vhd"
     disk_size_gb  = "50"
     create_option = "Empty"
     lun           = 0
