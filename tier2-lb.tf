@@ -5,8 +5,8 @@ resource "azurerm_lb" "tier2-LB" {
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
   frontend_ip_configuration {
-    name                 = "PrivateIPAddress"
-    subnet_id = "${azurerm_subnet.subnet2.id}"
+    name                          = "PrivateIPAddress"
+    subnet_id                     = "${azurerm_subnet.subnet2.id}"
     private_ip_address_allocation = "static"
   }
 }
