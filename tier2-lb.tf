@@ -7,7 +7,7 @@ resource "azurerm_lb" "tier2-LB" {
   frontend_ip_configuration {
     name                          = "PrivateIPAddress"
     subnet_id                     = "${azurerm_subnet.subnet2.id}"
-    private_ip_address_allocation = "dynamic"
+    private_ip_address_allocation = "Dynamic"
   }
 }
 
