@@ -32,7 +32,6 @@ resource "azurerm_virtual_machine" "tier3-vm" {
     name          = "datadisk${count.index}"
     vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/tier3-datadisk${count.index}.vhd"
     disk_size_gb  = "100"
-    caching       = "None"
     create_option = "Empty"
     lun           = 0
   }
