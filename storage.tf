@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "storage" {
-  name                = "asoteloterraform"
+  name                = "asoteloterraformntier"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
 
   location     = "${azurerm_resource_group.ResourceGrps.location}"

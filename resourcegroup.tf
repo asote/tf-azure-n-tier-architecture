@@ -16,6 +16,6 @@ provider "azurerm" {
 
 # Create a resource group
 resource "azurerm_resource_group" "ResourceGrps" {
-  name     = "asotelo-terraform"
+  name     = "asotelo-terraform-n-tier"
   location = "central us"
 }
