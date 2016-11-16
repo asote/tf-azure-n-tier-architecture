@@ -3,9 +3,8 @@ Azure RM + Terraform
 
 Sample terraform configuration files to provision and deploy  VMs in Azure Resource Manager.
 
-2 tiers VM deployment using availability sets and load balancers for HA.
+##HA 2 tier architecture
 
-![alt](https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/resource-manager-deployment-model/20161101100030/arm_arch3.png)
+![alt](https://2.bp.blogspot.com/-2ZGYzuibiQk/WCvETGe104I/AAAAAAAACnQ/UqDZx8JPCdc1du2IAdWNRFF_voo7A-4nQCLcB/s1600/Azure-2Tier-HA-IaaS.PNG)
 
 
-*Image Source: https://azure.microsoft.com/en-us/documentation/articles/resource-manager-deployment-model/
