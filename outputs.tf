@@ -6,6 +6,10 @@ output "sqlservers_name" {
   value = ["${azurerm_virtual_machine.tier2-vm.*.name}"]
 }
 
+output "dcs_name" {
+  value = ["${azurerm_virtual_machine.tier3-vm.*.name}"]
+}
+
 output "bastion_name" {
   value = ["${azurerm_virtual_machine.jumphost.*.name}"]
 }
@@ -20,6 +24,10 @@ output "webservers_ip" {
 
 output "sqlservers_ip" {
   value = ["${azurerm_network_interface.tier2-nics.*.private_ip_address}"]
+}
+
+output "dcs_ip" {
+  value = ["${azurerm_network_interface.tier3-nics.*.private_ip_address}"]
 }
 
 output "LB_VIP_IP" {
