@@ -29,14 +29,14 @@ resource "azurerm_subnet" "subnet3" {
 }
 
 resource "azurerm_subnet" "subnet4" {
-  name                 = "ADDS"
+  name                 = "ADDS_net"
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
-  address_prefix       = "10.0.4.0/24"
+  address_prefix       = "10.0.4.0/27"
 }
 
 resource "azurerm_subnet" "subnet5" {
-  name                 = "management"
+  name                 = "management_net"
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
   address_prefix       = "10.0.0.128/25"
