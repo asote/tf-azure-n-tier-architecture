@@ -55,7 +55,7 @@ resource "azurerm_network_security_group" "tier1_fw" {
     name                       = "deny-all"
     priority                   = 104
     direction                  = "Inbound"
-    access                     = "Allow"
+    access                     = "Deny"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "*"
