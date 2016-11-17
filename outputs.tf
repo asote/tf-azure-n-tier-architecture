@@ -10,6 +10,10 @@ output "sqlservers_name" {
   value = ["${azurerm_virtual_machine.tier3-vm.*.name}"]
 }
 
+output "fsw_name" {
+  value = ["${azurerm_virtual_machine.fsw.*.name}"]
+}
+
 output "dcs_name" {
   value = ["${azurerm_virtual_machine.tier4-vm.*.name}"]
 }
@@ -32,6 +36,10 @@ output "appservers_ip" {
 
 output "sqlservers_ip" {
   value = ["${azurerm_network_interface.tier3-nics.*.private_ip_address}"]
+}
+
+output "fsw_ip" {
+  value = ["${azurerm_network_interface.fsw.*.private_ip_address}"]
 }
 
 output "dcs_ip" {
