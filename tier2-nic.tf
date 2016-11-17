@@ -1,5 +1,5 @@
 resource "azurerm_network_interface" "tier2-nics" {
-  count               = "${var.count}"
+  count               = "3"
   name                = "vmnic-app-0${count.index + 1}"
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"

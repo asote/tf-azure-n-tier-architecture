@@ -1,8 +1,8 @@
 # Create virtal machine and define image to install on VM 
 
 resource "azurerm_virtual_machine" "tier2-vm" {
-  count = "${var.count}"
-  name  = "sql-0${count.index + 1}"
+  count = "3"
+  name  = "app-0${count.index + 1}"
 
   location = "${azurerm_resource_group.ResourceGrps.location}"
 
@@ -31,12 +31,12 @@ resource "azurerm_virtual_machine" "tier2-vm" {
   storage_data_disk {
     name          = "datadisk${count.index}"
     vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/tier2-datadisk${count.index}.vhd"
-    disk_size_gb  = "250"
+    disk_size_gb  = "50"
     create_option = "Empty"
     lun           = 0
   }
   os_profile {
-    computer_name  = "sqlvm-${count.index + 1}"
+    computer_name  = "appvm-${count.index + 1}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
 

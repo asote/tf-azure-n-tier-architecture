@@ -1,10 +1,10 @@
-resource "azurerm_virtual_machine" "jumphost" {
-  name = "bastion-01"
+resource "azurerm_virtual_machine" "fsw" {
+  name = "fsw-01"
 
   location = "${azurerm_resource_group.ResourceGrps.location}"
 
   resource_group_name              = "${azurerm_resource_group.ResourceGrps.name}"
-  network_interface_ids            = ["${azurerm_network_interface.bastionnics.id}"]
+  network_interface_ids            = ["${azurerm_network_interface.fsw.id}"]
   delete_os_disk_on_termination    = "true"
   delete_data_disks_on_termination = "true"
   vm_size                          = "Standard_A2"
@@ -20,19 +20,19 @@ resource "azurerm_virtual_machine" "jumphost" {
 
   storage_os_disk {
     name          = "osdisk0"
-    vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastionosdisk0.vhd"
+    vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/fsw-osdisk0.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
   storage_data_disk {
     name          = "datadisk0"
-    vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/bastiondatadisk0.vhd"
+    vhd_uri       = "${azurerm_storage_account.storage.primary_blob_endpoint}${azurerm_storage_container.blob1.name}/fsw-datadisk0.vhd"
     disk_size_gb  = "50"
     create_option = "Empty"
     lun           = 0
   }
   os_profile {
-    computer_name  = "bastion-01"
+    computer_name  = "fsw-01"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
   }
@@ -42,23 +42,16 @@ resource "azurerm_virtual_machine" "jumphost" {
   }
 }
 
-resource "azurerm_network_interface" "bastionnics" {
-  name                      = "vmnic-bastion-01"
+resource "azurerm_network_interface" "fsw" {
+  name                      = "vmnic-fsw-01"
   location                  = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name       = "${azurerm_resource_group.ResourceGrps.name}"
-  network_security_group_id = "${azurerm_network_security_group.bastion_fw.id}"
+  network_security_group_id = "${azurerm_network_security_group.tier3-fw.id}"
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = "${azurerm_subnet.subnet1.id}"
-    private_ip_address_allocation = "dynamic"
-    public_ip_address_id          = "${azurerm_public_ip.PublicIP.id}"
+    subnet_id                     = "${azurerm_subnet.subnet3.id}"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.0.3.100"
   }
-}
-
-resource "azurerm_public_ip" "PublicIP" {
-  name                         = "BastionPublicIP"
-  location                     = "${azurerm_resource_group.ResourceGrps.location}"
-  resource_group_name          = "${azurerm_resource_group.ResourceGrps.name}"
-  public_ip_address_allocation = "static"
 }

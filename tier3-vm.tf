@@ -2,7 +2,7 @@
 
 resource "azurerm_virtual_machine" "tier3-vm" {
   count = "${var.count}"
-  name  = "dc-0${count.index + 1}"
+  name  = "sql-0${count.index + 1}"
 
   location = "${azurerm_resource_group.ResourceGrps.location}"
 
@@ -36,7 +36,7 @@ resource "azurerm_virtual_machine" "tier3-vm" {
     lun           = 0
   }
   os_profile {
-    computer_name  = "dcvm-${count.index + 1}"
+    computer_name  = "sqlvm-${count.index + 1}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
 
