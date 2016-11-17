@@ -1,4 +1,4 @@
-resource "azurerm_network_security_group" "tier3_fw" {
+resource "azurerm_network_security_group" "tier5_fw" {
   name                = "mgt_fw"
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
