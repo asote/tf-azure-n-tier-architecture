@@ -4,6 +4,7 @@ resource "azurerm_virtual_network" "vnet1" {
   address_space       = ["10.0.0.0/16"]
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
+  dns_servers         = ["10.0.4.5", "10.0.4.6"]
 }
 
 # Create subnets
@@ -12,6 +13,7 @@ resource "azurerm_subnet" "subnet1" {
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
   address_prefix       = "10.0.1.0/24"
+  security_group       = "${azurerm_network_security_group.tier1_fw.id}"
 }
 
 resource "azurerm_subnet" "subnet2" {
@@ -19,6 +21,7 @@ resource "azurerm_subnet" "subnet2" {
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
   address_prefix       = "10.0.2.0/24"
+  security_group       = "${azurerm_network_security_group.tier2_fw.id}"
 }
 
 resource "azurerm_subnet" "subnet3" {
@@ -26,6 +29,7 @@ resource "azurerm_subnet" "subnet3" {
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
   address_prefix       = "10.0.3.0/24"
+  security_group       = "${azurerm_network_security_group.tier3_fw.id}"
 }
 
 resource "azurerm_subnet" "subnet4" {
@@ -33,6 +37,7 @@ resource "azurerm_subnet" "subnet4" {
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
   address_prefix       = "10.0.4.0/27"
+  security_group       = "${azurerm_network_security_group.tier4_fw.id}"
 }
 
 resource "azurerm_subnet" "subnet5" {
@@ -40,4 +45,5 @@ resource "azurerm_subnet" "subnet5" {
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet1.name}"
   address_prefix       = "10.0.0.128/25"
+  security_group       = "${azurerm_network_security_group.tier5_fw.id}"
 }
