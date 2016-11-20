@@ -7,7 +7,7 @@
 resource "azurerm_virtual_machine_extension" "DSC" {
   count                = "3"
   name                 = "DSC"
-  location             = "$azurerm_resource_group.ResourceGrps.location"
+  location             = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
   virtual_machine_name = "${element(azurerm_virtual_machine.tier1-vm.*.name, count.index)}"
   publisher            = "Microsoft.Powershell"
