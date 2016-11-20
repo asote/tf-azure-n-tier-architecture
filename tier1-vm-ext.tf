@@ -14,7 +14,6 @@ resource "azurerm_virtual_machine_extension" "DSC" {
   publisher            = "Microsoft.Powershell"
   type                 = "DSC"
   type_handler_version = "2.20"
-  depends_on           = ["azurerm_resource_group.ResourceGrps", "azurerm_storage_account.storage", "azurerm_storage_container.blob1"]
 
   settings = <<SETTINGS
   {
