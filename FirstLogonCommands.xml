@@ -1,11 +1,11 @@
 <FirstLogonCommands>
     <SynchronousCommand>
-        <CommandLine>cmd /c "copy C:\AzureData\CustomData.bin C:\Deploy.PS1"</CommandLine
+        <CommandLine>cmd /c "copy Install-IIS.PS1 C:\Install-IIS.PS1"</CommandLine
         ><Description>CopyScript</Description>
         <Order>11</Order>
     </SynchronousCommand>
     <SynchronousCommand>
-        <CommandLine>powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\Deploy.PS1</CommandLine
+        <CommandLine>powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\Install-IIS.PS1</CommandLine
         ><Description>RunScript</Description>
         <Order>12</Order>
     </SynchronousCommand>

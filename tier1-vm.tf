@@ -40,28 +40,7 @@ resource "azurerm_virtual_machine" "tier1-vm" {
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
 
-    custom_data = "${base64encode(
-
-    <<EOF
-
-    <script>
-
-    winrm quickconfig -q & winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"} & winrm set winrm/config @{MaxTimeoutms="1800000"} & winrm set winrm/config/service @{AllowUnencrypted="true"} & winrm set winrm/config/service/auth @{Basic="true"}
-
-    </script>
-
-    <powershell>
-
-    netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
-
-    $admin = [adsi]("WinNT://./administrator, user")
-
-    $admin.psbase.invoke("SetPassword", "${var.admin_password}")
-
-    </powershell>
-
-    EOF
-    )}"
+    #custom_data = "${base64encode($file(custom_data.txt))}"
   }
   os_profile_windows_config {
     enable_automatic_upgrades = "false"
@@ -73,77 +52,80 @@ resource "azurerm_virtual_machine" "tier1-vm" {
       #certificate_url = ""
     }
 
-    #additional_unattend_config {
+    additional_unattend_config {
+      pass = "oobeSystem"
 
+      component = "Microsoft-Windows-Shell-Setup"
 
-    #  pass         = "oobeSystem"
+      setting_name = "AutoLogon"
 
-
-    #  component    = "Microsoft-Windows-Shell-Setup"
-
-
-    #  setting_name = "AutoLogon"
-
-
-    #  content      = "<AutoLogon><Password><Value>${var.admin_password}</Value></Password><Enabled>true</Enabled><LogonCount>1</LogonCount><Username>${var.admin_username}</Username></AutoLogon>"
-
-
-    #}
-
+      content = "<AutoLogon><Password><Value>${var.admin_password}</Value></Password><Enabled>true</Enabled><LogonCount>1</LogonCount><Username>${var.admin_username}</Username></AutoLogon>"
+    }
 
     #Unattend config is to enable basic auth in WinRM, required for the provisioner stage.
 
+    additional_unattend_config {
+      pass = "oobeSystem"
 
-    #additional_unattend_config {
+      component = "Microsoft-Windows-Shell-Setup"
 
+      setting_name = "FirstLogonCommands"
 
-    #  pass         = "oobeSystem"
+      content = "${file("FirstLogonCommands.xml")}"
+    }
 
+    # provisioner "file" {
 
-    #  component    = "Microsoft-Windows-Shell-Setup"
+    #   source      = "Install-IIS.PS1"
 
+    #   destination = "C:\\Scripts\\Install-IIS.PS1"
 
-    #  setting_name = "FirstLogonCommands"
+    #  connection {
 
+    #    type     = "winrm"
 
-    #  content      = "${file("FirstLogonCommands.xml")}"
+    #    https    = false
 
+    #    insecure = true
+
+    #    user     = "${var.admin_username}"
+
+    #    password = "${var.admin_password}"
+
+    #host     = "${null_resource.intermediates.triggers.full_vm_dns_name}"
+
+    #port     = "5985"
+
+    # }
 
     #}
 
-    provisioner "file" {
-      source      = "Install-IIS.PS1"
-      destination = "C:\\Scripts\\Install-IIS.PS1"
+    # provisioner "remote-exec" {
 
-      connection {
-        type     = "winrm"
-        https    = false
-        insecure = true
-        user     = "${var.admin_username}"
-        password = "${var.admin_password}"
+    #   inline = [
 
-        #host     = "${null_resource.intermediates.triggers.full_vm_dns_name}"
+    #     "powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\\Scripts\\Install-IIS.ps1",
 
-        #port     = "5985"
-      }
-    }
-    provisioner "remote-exec" {
-      inline = [
-        "powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\\Scripts\\Install-IIS.ps1",
-      ]
+    #   ]
 
-      connection {
-        type  = "winrm"
-        https = false
+    #   connection {
 
-        #insecure = true
-        user     = "${var.admin_username}"
-        password = "${var.admin_password}"
+    #     type  = "winrm"
 
-        #host     = "${null_resource.intermediates.triggers.full_vm_dns_name}"
+    #     https = false
 
-        #port     = "5985"
-      }
-    }
+    #     #insecure = true
+
+    #     user     = "${var.admin_username}"
+
+    #    password = "${var.admin_password}"
+
+    #     #host     = "${null_resource.intermediates.triggers.full_vm_dns_name}"
+
+    #    #port     = "5985"
+
+    #  }
+
+    # }
   }
 }
