@@ -14,14 +14,14 @@ resource "azurerm_virtual_machine_extension" "DSC" {
   type                 = "DSC"
   type_handler_version = "2.21"
 
-  settings = {
-    "configuration" = {
-      "url"      = "https://asotelostor.blob.core.windows.net/files/IIS-Install.ps1"
-      "script"   = "IIS-Install.ps1"
-      "sastoken" = "?sv=2015-04-05&ss=b&srt=o&sp=ra&se=2017-01-31T22:53:59Z&st=2016-11-20T14:53:59Z&spr=https&sig=4LTq%2FXvoqWXb1Wr0vWGy8uK%2FGTR5ix78SJrsfkspW%2FA%3D"
-      "function" = "IIS-Install.ps1\\IISInstall"
-    }
+  settings = <<SETTINGS
+  {
+    "url"      : "https://asotelostor.blob.core.windows.net/files/IIS-Install.ps1",
+    "script"   : "IIS-Install.ps1",
+    "sastoken" : "?sv=2015-04-05&ss=b&srt=o&sp=ra&se=2017-01-31T22:53:59Z&st=2016-11-20T14:53:59Z&spr=https&sig=4LTq%2FXvoqWXb1Wr0vWGy8uK%2FGTR5ix78SJrsfkspW%2FA%3D",
+    "function" : "IIS-Install.ps1\\IISInstall"
   }
+SETTINGS
 
   tags {
     environment = "Test"
