@@ -3,4 +3,3 @@
 *.tfstate.backup
 .terraform/
 *.txt
-*.xml
