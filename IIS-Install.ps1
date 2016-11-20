@@ -2,10 +2,18 @@ configuration IISInstall
 { 
     node "localhost"
     { 
-        WindowsFeature IIS 
+        WindowsFeature InstallIIS 
         { 
+            
+            Name = "Web-Server"   
             Ensure = "Present" 
-            Name = "Web-Server"                       
+                    
         } 
+         WindowsFeature InstallIISConsole
+        {
+            Name = "Web-Mgmt-Console"
+            Ensure = "Present"
+        }
     } 
+
 }
