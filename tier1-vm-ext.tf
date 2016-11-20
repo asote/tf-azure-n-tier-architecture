@@ -12,7 +12,7 @@ resource "azurerm_virtual_machine_extension" "DSC" {
   virtual_machine_name = "${element(azurerm_virtual_machine.tier1-vm.*.name, count.index)}"
   publisher            = "Microsoft.Powershell"
   type                 = "DSC"
-  type_handler_version = "2.21"
+  type_handler_version = "2.20"
 
   settings = <<SETTINGS
   {
