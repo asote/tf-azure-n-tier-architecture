@@ -5,7 +5,6 @@
 # https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-extensions-dsc-overview
 # Publish-AzureRmVMDscConfiguration ".\IIS-Install.ps1" -OutputArchivePath ".\IIS-Install.ps1.zip"
 
-
 resource "azurerm_virtual_machine_extension" "DSC" {
   count                = "3"
   name                 = "DSC"
