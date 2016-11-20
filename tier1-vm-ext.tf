@@ -17,8 +17,8 @@ resource "azurerm_virtual_machine_extension" "DSC" {
 
   settings = <<SETTINGS
   {
-    "modulesUrl"      : "https://asoteloterraformntier.blob.core.windows.net/windows-powershell-dsc/IIS-Install.ps1.zip",
-    "sastoken" : "?sv=2015-04-05&ss=b&srt=o&sp=rl&se=2016-12-21T05:41:21Z&st=2016-11-20T21:41:21Z&spr=https&sig=iSiKvPbQvq7IwctYQm9aufxUxBwSORFoS0wTjp%2Fu56s%3D",
+    "modulesUrl"      : "https://asotelostor.blob.core.windows.net/windows-powershell-dsc/IIS-Install.ps1.zip",
+    "sastoken" : "?sv=2015-04-05&ss=b&srt=co&sp=rl&se=2016-12-30T06:16:14Z&st=2016-11-20T22:16:14Z&spr=https&sig=sI5CgBpUd4h9LqKTRSPqn3mc0vR1qa3FXam3cd46sD0%3D",
     "configurationFunction" : "IIS-Install.ps1\\IISInstall",
     "wmfVersion" : "latest"
   }
