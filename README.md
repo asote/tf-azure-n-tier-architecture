@@ -14,13 +14,13 @@ Sample terraform configuration files to provision and deploy  VMs in Azure Resou
 [More information on Terraform's Microsoft Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html)
 
 Instructions:
-*1. Download latest version of Terraform for Windows, [here.] (https://www.terraform.io/downloads.html) to a local folder, eg. c:\Terraform
-*2. Set path system environmental variable, in PowerShell type $env:Path = "c:\Terraform";
-*3. Launch PowerShell (cmd or git bash) and type terraform to confirm installation.
-*4. Code using any text editor, Visual Studio Code strongly recommended ( there is a Terraform extension for VSC).
-*5. Register new application in Azure Active Directory using the Classic Portal, [see intructions here](https://www.terraform.io/docs/providers/azurerm/index.html) and 
+* Download latest version of Terraform for Windows, [here.] (https://www.terraform.io/downloads.html) to a local folder, eg. c:\Terraform
+* Set path system environmental variable, in PowerShell type $env:Path = "c:\Terraform";
+* Launch PowerShell (cmd or git bash) and type terraform to confirm installation.
+* Code using any text editor, Visual Studio Code strongly recommended ( there is a Terraform extension for VSC).
+* Register new application in Azure Active Directory using the Classic Portal, [see intructions here](https://www.terraform.io/docs/providers/azurerm/index.html) and 
 assign the Contributor IAM role to the application user account in the ARM Portal.
-*6. Create a terraform.tfvars with the credentials (do not version control this file).
+* Create a terraform.tfvars with the credentials (do not version control this file).
 
     ARM_SUBSCRIPTION_ID = "..."
     ARM_CLIENT_ID = "..."
