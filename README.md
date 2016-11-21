@@ -22,6 +22,7 @@ Instructions:
 assign the Contributor IAM role to the application user account in the ARM Portal.
 * Create a terraform.tfvars with the credentials (do not version control this file).
 
+
     ARM_SUBSCRIPTION_ID = "..."
     ARM_CLIENT_ID = "..."
     ARM_CLIENT_SECRET = "..."
