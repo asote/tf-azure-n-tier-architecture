@@ -28,3 +28,27 @@ SETTINGS
     environment = "Test"
   }
 }
+
+resource "azurerm_virtual_machine_extension" "Script" {
+  count                = "3"
+  name                 = "Script"
+  location             = "${azurerm_resource_group.ResourceGrps.location}"
+  resource_group_name  = "${azurerm_resource_group.ResourceGrps.name}"
+  virtual_machine_name = "${element(azurerm_virtual_machine.tier1-vm.*.name, count.index)}"
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.8"
+
+  settings = <<SETTINGS
+  {
+    "fileUrl"      : "https://asotelostor.blob.core.windows.net/files/Install-IIS.ps1",
+    "sastoken" : "?sv=2015-04-05&ss=b&srt=co&sp=rl&se=2016-12-30T06:16:14Z&st=2016-11-20T22:16:14Z&spr=https&sig=sI5CgBpUd4h9LqKTRSPqn3mc0vR1qa3FXam3cd46sD0%3D",
+    "run" : "Install-IIS.ps1"
+    
+  }
+SETTINGS
+
+  tags {
+    environment = "Test"
+  }
+}
