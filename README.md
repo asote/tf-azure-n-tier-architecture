@@ -18,8 +18,7 @@ Instructions:
 * Set path system environmental variable, in PowerShell type $env:Path = "c:\Terraform";
 * Launch PowerShell (cmd or git bash) and type terraform to confirm installation.
 * Code using any text editor, Visual Studio Code strongly recommended ( there is a Terraform extension for VSC).
-* Register new application in Azure Active Directory using the Classic Portal, [see intructions here](https://www.terraform.io/docs/providers/azurerm/index.html) and 
-assign the Contributor IAM role to the application user account in the ARM Portal.
+* Register new application in Azure Active Directory using the Classic Portal, [see intructions here](https://www.terraform.io/docs/providers/azurerm/index.html) and assign the Contributor IAM role to the application user account in the ARM Portal.
 * Create a terraform.tfvars with the credentials (do not version control this file).  
 
 
