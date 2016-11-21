@@ -1,6 +1,7 @@
 configuration AppInstall 
 { 
-    node "localhost"
+    Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
+    Node "localhost"
     { 
         WindowsFeature InstallIIS 
         { 
@@ -15,7 +16,8 @@ configuration AppInstall
             Ensure = "Present"
         }
 
-         WindowsFeature ASP {
+         WindowsFeature ASP
+        {
             Name = "Web-Asp-Net45"
             Ensure = "Present"
           

@@ -1,5 +1,8 @@
-configuration DCInstall             
-{             
+   configuration DCInstall 
+{ 
+    Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
+    Node "localhost"
+    { 
         WindowsFeature ADDSInstall             
         {             
             Ensure = "Present"             
@@ -10,9 +13,7 @@ configuration DCInstall
         {             
             Ensure = "Present"             
             Name = "RSAT-ADDS"             
-        }            
- }             
-            
-             
-            
-   
+        }   
+    } 
+
+}

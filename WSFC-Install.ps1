@@ -1,7 +1,9 @@
-configuration WSFCInstall
-{
-
-            WindowsFeature FailoverFeature 
+   configuration WSFCInstall
+{ 
+    Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
+    Node "localhost"
+    { 
+        WindowsFeature FailoverFeature 
         { 
             Ensure = "Present" 
             Name      = "Failover-clustering" 
@@ -22,4 +24,6 @@ configuration WSFCInstall
  
             DependsOn = "[WindowsFeature]RSATClusteringPowerShell" 
         }
+    } 
+
 }
