@@ -46,7 +46,7 @@ resource "azurerm_network_security_group" "tier3_fw" {
     access                     = "Deny"
     protocol                   = "Tcp"
     source_port_range          = "80"
-    destination_port_range     = "50"
+    destination_port_range     = "80"
     source_address_prefix      = "10.0.1.0/24"
     destination_address_prefix = "10.0.3.0/24"
   }
@@ -58,7 +58,7 @@ resource "azurerm_network_security_group" "tier3_fw" {
     access                     = "Deny"
     protocol                   = "Tcp"
     source_port_range          = "80"
-    destination_port_range     = "50"
+    destination_port_range     = "80"
     source_address_prefix      = "10.0.2.0/24"
     destination_address_prefix = "10.0.3.0/24"
   }
