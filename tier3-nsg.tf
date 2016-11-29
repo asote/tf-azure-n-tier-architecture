@@ -28,7 +28,7 @@ resource "azurerm_network_security_group" "tier3_fw" {
   }
 
   security_rule {
-    name                       = "Deny-All"
+    name                       = "Deny-AllTraffic"
     priority                   = 200
     direction                  = "Inbound"
     access                     = "Deny"
