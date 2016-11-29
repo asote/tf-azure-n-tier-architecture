@@ -40,26 +40,14 @@ resource "azurerm_network_security_group" "tier3_fw" {
   }
 
   security_rule {
-    name                       = "Deny-tier1-HTTP"
+    name                       = "Deny-HTTP"
     priority                   = 200
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "Tcp"
     source_port_range          = "80"
     destination_port_range     = "80"
-    source_address_prefix      = "10.0.1.0/24"
-    destination_address_prefix = "10.0.3.0/24"
-  }
-
-  security_rule {
-    name                       = "Deny-tier2-HTTP"
-    priority                   = 210
-    direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "Tcp"
-    source_port_range          = "80"
-    destination_port_range     = "80"
-    source_address_prefix      = "10.0.2.0/24"
+    source_address_prefix      = "*"
     destination_address_prefix = "10.0.3.0/24"
   }
 }
