@@ -1,6 +1,6 @@
 # https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg
 #
-# Allow SQL and RDP.  Deny HTTP from tier1 tier and Ineternet 
+# Allow SQL and RDP.  Deny HTTP from tier1,tier2 and Internet 
 
 resource "azurerm_network_security_group" "tier3_fw" {
   name                = "sql_fw"
