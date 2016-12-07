@@ -32,4 +32,4 @@ Configuration:
  * Create Azure Automation account in Azure Resource Manager Portal.
  * Open Azure Automation Account and upload PowerShell DSC files in the DSC Configurations blade.
  * Compile each DSC file published.
- * Onboard Azure VMs in the SC Nodes blade.
+ * Onboard Azure VMs in the DSC Nodes blade.
