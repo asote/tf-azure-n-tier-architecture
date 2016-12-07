@@ -4,7 +4,7 @@ resource "azurerm_virtual_network" "vnet1" {
   address_space       = ["10.0.0.0/16"]
   location            = "${azurerm_resource_group.ResourceGrps.location}"
   resource_group_name = "${azurerm_resource_group.ResourceGrps.name}"
-  dns_servers         = ["10.0.4.5", "10.0.4.6"]
+  dns_servers         = ["168.63.129.16"]
 }
 
 # Create subnets
