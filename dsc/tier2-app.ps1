@@ -1,7 +1,7 @@
 configuration AppInstall 
 { 
     Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
-    Node "localhost"
+    Node "appserver"
     { 
         WindowsFeature InstallIIS 
         { 

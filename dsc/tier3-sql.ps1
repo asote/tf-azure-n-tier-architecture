@@ -1,7 +1,7 @@
    configuration WSFCInstall
 { 
     Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
-    Node "localhost"
+    Node "sqlserver"
     { 
         WindowsFeature FailoverFeature 
         { 

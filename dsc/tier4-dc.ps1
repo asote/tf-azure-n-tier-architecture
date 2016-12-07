@@ -1,7 +1,7 @@
    configuration DCInstall 
 { 
     Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
-    Node "localhost"
+    Node "dcserver"
     { 
         WindowsFeature ADDSInstall             
         {             

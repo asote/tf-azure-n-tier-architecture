@@ -1,7 +1,7 @@
 configuration IISInstall 
 { 
     Import-DscResource –ModuleName ’PSDesiredStateConfiguration’;
-    Node "localhost"
+    Node "webserver"
     { 
         WindowsFeature InstallIIS 
         { 
