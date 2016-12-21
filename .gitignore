@@ -3,3 +3,4 @@
 *.tfstate.backup
 .terraform/
 *.txt
+Set-EnvVariables.ps1

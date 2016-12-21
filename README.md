@@ -19,14 +19,13 @@ Provisioning:
 * Launch PowerShell (cmd or git bash) and type terraform to confirm installation.
 * Code using any text editor, Visual Studio Code strongly recommended ( there is a Terraform extension for VSC).
 * Register new application in Azure Active Directory using the Classic Portal, [see intructions here](https://www.terraform.io/docs/providers/azurerm/index.html) and assign the Contributor IAM role to the application user account in the ARM Portal.
-* Create a terraform.tfvars with the credentials (do not version control this file).  
+* Create a PowerShell script (Set-Credentials.ps1) with the credentials set as environment variables (do not version control this file).  
 
                 ARM_SUBSCRIPTION_ID = "..."  
                 ARM_CLIENT_ID = "..."  
                 ARM_CLIENT_SECRET = "..."  
                 ARM_TENANT_ID = "..."  
-                admin_username = "..."  
-                admin_password = "..."  
+
 
 Configuration:
  * Create Azure Automation account in Azure Resource Manager Portal.
