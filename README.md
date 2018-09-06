@@ -3,7 +3,7 @@ Azure RM + Terraform
 
 Sample terraform configuration files to provision and deploy  VMs in Azure Resource Manager.
 
-##Running Windows VMs for an N-tier architecture on Azure
+## Running Windows VMs for an N-tier architecture on Azure
 
 ![Azure architecture](https://1.bp.blogspot.com/-vBoEHhSpjsA/WDcRKM1VylI/AAAAAAAACpE/HC9JTCvg1jIxiPLgYAgKOhjrgB-C_uWywCLcB/s640/Azure-Architecture.PNG)
 
@@ -13,7 +13,7 @@ Sample terraform configuration files to provision and deploy  VMs in Azure Resou
 
 [More information on Terraform's Microsoft Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html)
 
-Provisioning:
+### Provisioning:
 * Download latest version of Terraform for Windows, [here.] (https://www.terraform.io/downloads.html) to a local folder, eg. c:\Terraform
 * Set path system environmental variable, in PowerShell type $env:Path += ";c:\Terraform"
 * Launch PowerShell (cmd or git bash) and type terraform to confirm installation.
@@ -27,7 +27,7 @@ Provisioning:
                 ARM_TENANT_ID = "..."  
 
 
-Configuration:
+### Configuration:
  * Create Azure Automation account in Azure Resource Manager Portal.
  * Open Azure Automation Account and upload PowerShell DSC files in the DSC Configurations blade.
  * Compile each DSC file published.
