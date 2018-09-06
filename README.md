@@ -21,11 +21,12 @@ Sample terraform configuration files to provision and deploy  VMs in Azure Resou
 * Register new application in Azure Active Directory using the Classic Portal, [see instructions here](https://www.terraform.io/docs/providers/azurerm/index.html) and assign the Contributor IAM role to the application user account in the ARM Portal.
 * Create a PowerShell script (Set-Credentials.ps1) with the credentials set as environment variables (do not version control this file).  
 
-                ARM_SUBSCRIPTION_ID = "..."  
-                ARM_CLIENT_ID = "..."  
-                ARM_CLIENT_SECRET = "..."  
-                ARM_TENANT_ID = "..."  
-
+```
+ARM_SUBSCRIPTION_ID = "..."  
+ARM_CLIENT_ID = "..."  
+ARM_CLIENT_SECRET = "..."  
+ARM_TENANT_ID = "..."  
+```
 
 ### Configuration:
  * Create Azure Automation account in Azure Resource Manager Portal.
